@@ -9,7 +9,6 @@ require.config({
         lodash: './vendor/lodash.min',
         pathToRegexp: './vendor/path-to-regexp/index',
         prettify: './vendor/prettify/prettify',
-        semver: './vendor/semver.min',
         utilsSampleRequest: './utils/send_sample_request',
         webfontloader: './vendor/webfontloader'
     },
@@ -44,11 +43,10 @@ require([
     './api_data.js',
     'prettify',
     'utilsSampleRequest',
-    'semver',
     'webfontloader',
     'bootstrap',
     'pathToRegexp'
-], function($, _, locale, Handlebars, apiProject, apiData, prettyPrint, sampleRequest, semver, WebFont) {
+], function($, _, locale, Handlebars, apiProject, apiData, prettyPrint, sampleRequest, WebFont) {
 
     // load google web fonts
     loadGoogleFontCss();
@@ -159,7 +157,7 @@ require([
 
     // sort versions DESC
     apiVersions = Object.keys(apiVersions);
-    apiVersions.sort(semver.compare);
+    apiVersions.sort(function (a, b) { return a < b});
     apiVersions.reverse();
 
     //

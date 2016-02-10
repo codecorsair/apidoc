@@ -9,7 +9,6 @@ var apidoc = require('apidoc-core');
 var exec   = require('child_process').exec;
 var fs     = require('fs-extra');
 var path   = require('path');
-var semver = require('semver');
 var should = require('should');
 
 var versions = require('apidoc-example').versions;
@@ -17,7 +16,7 @@ var versions = require('apidoc-example').versions;
 describe('apiDoc custom markdown parser', function() {
 
     // get latest example for the used apidoc-spec
-    var latestExampleVersion = semver.maxSatisfying(versions, '~' + apidoc.getSpecificationVersion()); // ~0.2.0 = >=0.2.0 <0.3.0
+    var latestExampleVersion = apidoc.getSpecificationVersion();
 
     var exampleBasePath = 'node_modules/apidoc-example/' + latestExampleVersion;
     var fixturePath = exampleBasePath + '/fixtures';
